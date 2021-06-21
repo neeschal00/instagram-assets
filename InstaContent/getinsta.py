@@ -53,7 +53,10 @@ class InstaContent:
         # pprint(login_resp.headers)
 
         # self.followers()
+<<<<<<< HEAD
         self.instaS.close()
+=======
+>>>>>>> 07b36bcb368b3163609ac876dec26172a61044ee
 
 
     def followers(self,unfollowers_only:bool=False)-> list:
@@ -127,7 +130,11 @@ class InstaContent:
         else:
 
             new_url = _url.scheme + '://'+ _url.netloc+ _url.path #restructuring the url without any query
+<<<<<<< HEAD
             short_code_id = _url.path.lstrip('/p/').rstrip('/')
+=======
+
+>>>>>>> 07b36bcb368b3163609ac876dec26172a61044ee
             headers = {
             "referer": new_url,
             "x-csrftoken": self.csrf,
@@ -136,11 +143,19 @@ class InstaContent:
             }
 
             self.instaS.headers.update(headers | self.headers)
+<<<<<<< HEAD
             _get_graph = self.instaS.get(f'https://www.instagram.com/graphql/query/?query_hash=971f52b26328008c768b7d8e4ac9ce3c&variables=%7B%22shortcode%22%3A%22{short_code_id}%22%2C%22child_comment_count%22%3A3%2C%22fetch_comment_count%22%3A40%2C%22parent_comment_count%22%3A24%2C%22has_threaded_comments%22%3Atrue%7D')
 
 
             if _get_graph.status_code == 200:
                 _api_data = _get_graph.json()["data"]["shortcode_media"]
+=======
+            _get_graph = self.instaS.get(new_url,params={'__a':1})
+
+
+            if _get_graph.status_code == 200:
+                _api_data = _get_graph.json()["graphql"]["shortcode_media"]
+>>>>>>> 07b36bcb368b3163609ac876dec26172a61044ee
 
                 #If doesn't have multiple images/videos in one
                 if not (_api_data["__typename"] == "GraphSidecar"):
@@ -160,11 +175,15 @@ class InstaContent:
                 else:
                     all_sidecar = _api_data["edge_sidecar_to_children"]["edges"]
                     # print('test')
+<<<<<<< HEAD
                     if filename is None:
                         asyncio.get_event_loop().run_until_complete(self.get_all_medias(all_sidecar,_api_data["shortcode"]))
                     else:
                         asyncio.get_event_loop().run_until_complete(self.get_all_medias(all_sidecar,filename))
 
+=======
+                    asyncio.get_event_loop().run_until_complete(self.get_all_medias(all_sidecar))
+>>>>>>> 07b36bcb368b3163609ac876dec26172a61044ee
                     # print('done')
 
                     """Synchronous Version"""
@@ -184,8 +203,12 @@ class InstaContent:
             # print(_get_graph.json())
 
 
+<<<<<<< HEAD
     #work with single media file
     async def get_single_media(self,session,url:str,position:int,filename:str,is_video:bool=False):
+=======
+    async def get_single_media(self,session,url:str,position:int,is_video:bool=False): #work with single media file
+>>>>>>> 07b36bcb368b3163609ac876dec26172a61044ee
         async with session.get(url) as response:
             print(url)
             print(position)
@@ -196,6 +219,7 @@ class InstaContent:
                 filecontent = await response.read()
                 print(filecontent)
                 print('true')
+<<<<<<< HEAD
                 InstaContent.writeVideo(filename+'_'+str(position)+'.mp4',filecontent)
             elif is_video is False:
                 filecontent = await response.read()
@@ -203,6 +227,15 @@ class InstaContent:
                 InstaContent.writeImage(filename+'_'+str(position)+'.jpg',filecontent)
 
     async def get_all_medias(self,sites_edges:list,filename:str)->None: #get list of all sidecar edges of post with multiple images
+=======
+                InstaContent.writeVideo(str(position)+'.mp4',filecontent)
+            elif is_video is False:
+                filecontent = await response.read()
+                print('false is image')
+                InstaContent.writeImage(str(position)+'.jpg',filecontent)
+
+    async def get_all_medias(self,sites_edges:list)->None: #get list of all sidecar edges of post with multiple images
+>>>>>>> 07b36bcb368b3163609ac876dec26172a61044ee
         async with aiohttp.ClientSession(headers=self.headers) as session:
             tasks = []
             for position, url in enumerate(sites_edges):
@@ -211,16 +244,27 @@ class InstaContent:
                 # print(node_data["is_video"])
                 if node_data["is_video"]:
                     print(node_data["video_url"])
+<<<<<<< HEAD
                     task = asyncio.ensure_future(self.get_single_media(session,node_data["video_url"],position,filename,is_video=node_data["is_video"])) #concurrent run
                 else:
                     print(node_data["display_url"])
                     task = asyncio.ensure_future(self.get_single_media(session,node_data["display_url"],position,filename,is_video=node_data["is_video"])) #concurrent run
+=======
+                    task = asyncio.ensure_future(self.get_single_media(session,node_data["video_url"],position,is_video=node_data["is_video"])) #concurrent run
+                else:
+                    print(node_data["display_url"])
+                    task = asyncio.ensure_future(self.get_single_media(session,node_data["display_url"],position,is_video=node_data["is_video"])) #concurrent run
+>>>>>>> 07b36bcb368b3163609ac876dec26172a61044ee
                 tasks.append(task)
 
             await asyncio.gather(*tasks,return_exceptions=True)
 
 
+<<<<<<< HEAD
     def downloadMultiple(self,url:str):
+=======
+    async def downloadMultiple(self,url:str):
+>>>>>>> 07b36bcb368b3163609ac876dec26172a61044ee
         pass
 
     @staticmethod
@@ -250,9 +294,15 @@ class InstaContent:
 
 if __name__ == "__main__":
     obj = InstaContent('username','password') # Enter username and password
+<<<<<<< HEAD
     # unfollowers_data = obj.followers(unfollowers_only=True) #to get the list of following that don't follow you back
     # pprint(unfollowers_data)
     obj.downloadPost('post url',filename=None)
+=======
+    # unfollowers_data = obj.followers(unfollowers_only=True) #to get the list of unfollowers only
+    # pprint(unfollowers_data)
+    obj.downloadPost('https://www.instagram.com/p/CP_D5E7AySn/',filename=None)
+>>>>>>> 07b36bcb368b3163609ac876dec26172a61044ee
 
 
 

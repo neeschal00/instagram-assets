@@ -16,8 +16,11 @@ from urllib.request import urlretrieve
 # dict3 = {**dict1,**dict2}
 # print(dict3)
 
+<<<<<<< HEAD
 # https://www.instagram.com/p/BvZVTxugX68/
 
+=======
+>>>>>>> 07b36bcb368b3163609ac876dec26172a61044ee
 # hdrs = {'Content-Type': 'application/json; charset=utf-8', 'ig-set-password-encryption-web-key-id': '12', 'ig-set-password-encryption-web-pub-key': 'f3d320d6756230c6e1ccca141e633d9ef50f4d9cdcd70fcb26fd17107b54c649', 'ig-set-password-encryption-web-key-version': '10', 'x-robots-tag': 'noindex', 'Vary': 'Accept-Language, Cookie', 'Content-Language': 'en', 'Date': 'Fri, 07 May 2021 15:37:18 GMT', 'Strict-Transport-Security': 'max-age=31536000', 'Cache-Control': 'private, no-cache, no-store, must-revalidate', 'Pragma': 'no-cache', 'Expires': 'Sat, 01 Jan 2000 00:00:00 GMT', 'X-Frame-Options': 'SAMEORIGIN', 'content-security-policy': "report-uri https://www.instagram.com/security/csp_report/; default-src 'self' https://www.instagram.com; img-src data: blob: https://*.fbcdn.net https://*.instagram.com https://*.cdninstagram.com https://*.facebook.com https://*.fbsbx.com https://*.giphy.com; font-src data: https://*.fbcdn.net https://*.instagram.com https://*.cdninstagram.com; media-src 'self' blob: https://www.instagram.com https://*.cdninstagram.com https://*.fbcdn.net; manifest-src 'self' https://www.instagram.com; script-src 'self' https://instagram.com https://www.instagram.com https://*.www.instagram.com https://*.cdninstagram.com wss://www.instagram.com https://*.facebook.com https://*.fbcdn.net https://*.facebook.net 'unsafe-inline' 'unsafe-eval' blob:; style-src 'self' https://*.www.instagram.com https://www.instagram.com 'unsafe-inline'; connect-src 'self' https://instagram.com https://www.instagram.com https://*.www.instagram.com https://graph.instagram.com https://*.graph.instagram.com https://graphql.instagram.com https://*.cdninstagram.com https://api.instagram.com https://i.instagram.com https://*.i.instagram.com wss://www.instagram.com wss://edge-chat.instagram.com https://*.facebook.com https://*.fbcdn.net https://*.facebook.net chrome-extension://boadgeojelhgndaghljhdicfkmllpafd blob:; worker-src 'self' blob: https://www.instagram.com; frame-src 'self' https://instagram.com https://www.instagram.com https://*.instagram.com https://staticxx.facebook.com https://www.facebook.com https://web.facebook.com https://connect.facebook.net https://m.facebook.com; object-src 'none'; upgrade-insecure-requests", 'cross-origin-embedder-policy-report-only': 'require-corp;report-to="coep"', 'report-to': '{"group": "coep", "max_age": 86400, "endpoints": [{"url": "/security/coep_report/"}]}', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '0', 'x-ig-push-state': 'c2', 'x-aed': '44', 'Access-Control-Expose-Headers': 'X-IG-Set-WWW-Claim', 'Set-Cookie': 'csrftoken=t9gJhmgXrAViTaIgu9o6ukSu4MgXXFvN; Domain=.instagram.com; expires=Fri, 06-May-2022 15:37:18 GMT; Max-Age=31449600; Path=/; Secure, rur=NAO; Domain=.instagram.com; HttpOnly; Path=/; Secure, ds_user_id=44503193972; Domain=.instagram.com; expires=Thu, 05-Aug-2021 15:37:18 GMT; Max-Age=7776000; Path=/; Secure, sessionid=44503193972%3ANXv2osTiIcMNl4%3A16; Domain=.instagram.com; expires=Sat, 07-May-2022 15:37:18 GMT; HttpOnly; Max-Age=31536000; Path=/; Secure', 'x-ig-origin-region': 'nao', 'X-FB-TRIP-ID': '1679558926', 'Alt-Svc': 'h3-29=":443"; ma=3600,h3-27=":443"; ma=3600', 'Connection': 'keep-alive', 'Content-Length': '91'}
 # pprint(hdrs)
 
@@ -68,13 +71,20 @@ ol = '%7B%22id%22%3A%222253976586%22%2C%22include_reel%22%3Atrue%2C%22fetch_mutu
 
 # jack()
 def fag(jack=None,is_video=False):
+<<<<<<< HEAD
     url = 'https://www.instagram.com/p/CM82JSksC7LzsL_-2dpLbJxjCEtdwCA8nbHrOI0/?utm_source=ig_web_copy_link'
+=======
+    url = 'https://www.instagram.com/p/CPcOXXVLME-/?utm_source=ig_web_copy_link'
+>>>>>>> 07b36bcb368b3163609ac876dec26172a61044ee
     _url = urlsplit(url)
     if not urlsplit(url).path.startswith('/p/'):
         print('fag')
     else:
+<<<<<<< HEAD
         print(_url.path.lstrip('/p/').rstrip('/'))
         print('..............')
+=======
+>>>>>>> 07b36bcb368b3163609ac876dec26172a61044ee
         new_url = _url.scheme + '://'+ _url.netloc+ _url.path
         print(new_url)
 
@@ -105,6 +115,7 @@ if None:
 # cont = json.dumps(data.json(),indent=2)
 # with open('post_data.json','w') as file:
 #     file.write(cont)
+<<<<<<< HEAD
 # import time
 # start_t = time.time()
 # data = requests.get('https://instagram.fktm3-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s640x640/199149591_202779401696209_1809620098758956202_n.jpg?tp=1&_nc_ht=instagram.fktm3-1.fna.fbcdn.net&_nc_cat=101&_nc_ohc=lmsik8raE_kAX-L27r6&edm=AP_V10EBAAAA&ccb=7-4&oh=73cf826b2a87adeb05aae8e027708ceb&oe=60CA9063&_nc_sid=4f375e')
@@ -112,6 +123,15 @@ if None:
 # print(data.content)
 # print(data.text)
 # data =
+=======
+import time
+start_t = time.time()
+data = requests.get('https://instagram.fktm3-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s640x640/199149591_202779401696209_1809620098758956202_n.jpg?tp=1&_nc_ht=instagram.fktm3-1.fna.fbcdn.net&_nc_cat=101&_nc_ohc=lmsik8raE_kAX-L27r6&edm=AP_V10EBAAAA&ccb=7-4&oh=73cf826b2a87adeb05aae8e027708ceb&oe=60CA9063&_nc_sid=4f375e')
+print(data.status_code)
+print(data.content)
+print(data.text)
+data =
+>>>>>>> 07b36bcb368b3163609ac876dec26172a61044ee
 # diff = time.time() - start_t
 # print(diff)
 # json_d = json.loads(json.dumps(edges_to))
@@ -159,7 +179,10 @@ if __name__=="__main__":
     print(f"It took {duration} seconds to download {len(sites)} sitess")
 
 '''
+<<<<<<< HEAD
 
 #request post url
 # https://www.instagram.com/graphql/query/?query_hash=971f52b26328008c768b7d8e4ac9ce3c&variables=%7B%22shortcode%22%3A%22ByC3cvilSp8OT3YJ8vKd3qN7Xdyi453WOQi4tM0%22%2C%22child_comment_count%22%3A3%2C%22fetch_comment_count%22%3A40%2C%22parent_comment_count%22%3A24%2C%22has_threaded_comments%22%3Atrue%7D
 # https://www.instagram.com/graphql/query/?query_hash=971f52b26328008c768b7d8e4ac9ce3c&variables=%7B%22shortcode%22%3A%22CQIiMfKsAOo%22%2C%22child_comment_count%22%3A3%2C%22fetch_comment_count%22%3A40%2C%22parent_comment_count%22%3A24%2C%22has_threaded_comments%22%3Atrue%7D
+=======
+>>>>>>> 07b36bcb368b3163609ac876dec26172a61044ee
