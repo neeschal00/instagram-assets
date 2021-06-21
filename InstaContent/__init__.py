@@ -1,0 +1,1 @@
+from .getinsta import InstaContent
