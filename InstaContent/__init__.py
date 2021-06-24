@@ -1,1 +1,1 @@
-from .getinsta import InstaContent
+from .insta_assets import InstaContent
