@@ -1,5 +1,5 @@
 # Instagram-Assets
-Script for instagram scraping
+Script that directly interacts with Instagram's Official api and make use of it
 ```
 from instgram-assets import InstaContent
 ```
