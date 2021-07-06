@@ -1,7 +1,7 @@
 # Instagram-Assets
 Script that directly interacts with Instagram's Official api and make use of it
 ```
-from InstaContent.instagram_assets import InstaContent
+from InstaContent.insta_assets import InstaContent
 ```
 
 ## Login
