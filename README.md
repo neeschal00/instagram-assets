@@ -20,5 +20,5 @@ unfollowers_data = insta_obj.followers(unfollowers_only=True) #to get unfollower
 ```
 insta_obj.downloadPost('https://www.instagram.com/p/CPJGp3Yp6wR/',filename=None) 
 ```
-> **Note:** If **filename=None** the images are saved using post id and adds underscore(_) + number if multiple images
+> **Note:** If **filename=None** the images are saved using post id and adds underscore(_) + number if post has multiple images/videos
 
