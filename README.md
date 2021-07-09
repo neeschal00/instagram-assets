@@ -8,6 +8,8 @@ from InstaContent.insta_assets import InstaContent
 ```
 insta_obj = InstaContent('username','password') #To login to instagram
 ```
+> **Note:** If **2-factor Authentication** is on it doesn't work
+
 
 ## Get Following data 
 Can be used to get the dictionary of users who don't follow you back
