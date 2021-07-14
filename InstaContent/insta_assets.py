@@ -2,7 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
 from pprint import pprint
-import json
 import asyncio, aiohttp
 from urllib.parse import quote, urlsplit
 
@@ -53,6 +52,7 @@ class InstaContent:
         # pprint(login_resp.headers)
 
         # self.followers()
+        self.instaS.close()
 
 
     def followers(self,unfollowers_only:bool=False)-> list:
@@ -243,15 +243,6 @@ class InstaContent:
                 videof.write(filecontent)
 
 
-
-
-
-
-if __name__ == "__main__":
-    obj = InstaContent('username','password') # Enter username and password
-    # unfollowers_data = obj.followers(unfollowers_only=True) #to get the list of unfollowers only
-    # pprint(unfollowers_data)
-    obj.downloadPost('url',filename=None)
 
 
 
