@@ -4,7 +4,10 @@ from datetime import datetime
 from pprint import pprint
 import asyncio, aiohttp
 from urllib.parse import quote, urlsplit
+import logging
 
+logging.basicConfig(filename='instaAssets.log', level=logging.INFO,
+                    format='%(levelname)s:%(message)s')
 
 class InstaContent:
     def __enter__(self):
@@ -44,14 +47,11 @@ class InstaContent:
             "referer": "https://www.instagram.com/accounts/login/",
             "x-csrftoken": self.csrf
         }
-        print(payload)
         login_resp = self.instaS.post(self.login_url,data=payload,headers={**self.headers,**self.login_headers})
-        print(login_resp.status_code)
-        self.userId = login_resp.json()['userId'] #numerical user id stored in insta
-        print(self.userId)
-        # pprint(login_resp.headers)
 
-        # self.followers()
+        self.userId = login_resp.json()['userId'] #numerical user id stored in insta
+        logging.info(f"{login_resp.status_code} status of logging into the instagram account")
+
         self.instaS.close()
 
 
@@ -61,11 +61,6 @@ class InstaContent:
             raise TypeError("The unfollowers_only value should be boolean(i.e. True or False)")
 
         followers_list = []
-
-        # q_data = {
-        # "query_hash": "3dec7e2c57367ef3da3d987d89f9dbc8",
-        # "variables": {"id":self.userId,"include_reel":True,"fetch_mutual":False,"first":24}
-        # }
 
         query_headers = {
             "referer": f"https://www.instagram.com/{self.uid}/",
@@ -112,10 +107,10 @@ class InstaContent:
                     followers_list.append({nodes["node"]["username"] : f'https://www.instagram.com/{nodes["node"]["username"]}/'})
 
             has_next_pg = pg_details["page_info"]["has_next_page"]
-            print(has_next_pg)
             after_c = pg_details["page_info"]["end_cursor"]
 
         return followers_list
+        logging.info("Accessed till no next page for followers data")
 
     #using __a=1 as query param to get graph json
     def downloadPost(self,url:str,filename = None) -> bool:
@@ -156,6 +151,7 @@ class InstaContent:
                             InstaContent.writeImage(_api_data["shortcode"],image_cont.content)
                         else:
                             InstaContent.writeImage(filename,image_cont.content)
+                    logging.info('Downloaded Single media post')
                 else:
                     all_sidecar = _api_data["edge_sidecar_to_children"]["edges"]
                     # print('test')
@@ -164,6 +160,7 @@ class InstaContent:
                     else:
                         asyncio.get_event_loop().run_until_complete(self.get_all_medias(all_sidecar,filename))
 
+                    logging.info('Downloaded multiple media posts')
                     # print('done')
 
                     """Synchronous Version"""
@@ -179,26 +176,15 @@ class InstaContent:
 
 
 
-            # print(_get_graph.headers)
-            # print(_get_graph.json())
-
-
     #work with single media file
     async def get_single_media(self,session,url:str,position:int,filename:str,is_video:bool=False):
         async with session.get(url) as response:
-            print(url)
-            print(position)
-            print(is_video)
-            # print(filecontent.headers)
-            # print(filecontent.status_code)
+
             if is_video is True:
                 filecontent = await response.read()
-                print(filecontent)
-                print('true')
                 InstaContent.writeVideo(filename+str(position)+'.mp4',filecontent)
             elif is_video is False:
                 filecontent = await response.read()
-                print('false is image')
                 InstaContent.writeImage(filename+str(position)+'.jpg',filecontent)
 
     async def get_all_medias(self,sites_edges:list,filename:str)->None: #get list of all sidecar edges of post with multiple images
@@ -206,21 +192,17 @@ class InstaContent:
             tasks = []
             for position, url in enumerate(sites_edges):
                 node_data = url["node"]
-                # print(position)
-                # print(node_data["is_video"])
+
                 if node_data["is_video"]:
-                    print(node_data["video_url"])
+
                     task = asyncio.ensure_future(self.get_single_media(session,node_data["video_url"],position,filename,is_video=node_data["is_video"])) #concurrent run
                 else:
-                    print(node_data["display_url"])
+
                     task = asyncio.ensure_future(self.get_single_media(session,node_data["display_url"],position,filename,is_video=node_data["is_video"])) #concurrent run
                 tasks.append(task)
 
             await asyncio.gather(*tasks,return_exceptions=True)
 
-
-    def downloadMultiple(self,url:str):
-        pass
 
     @staticmethod
     def writeVideo(filename:str,filecontent:bytes):
@@ -241,18 +223,3 @@ class InstaContent:
         else:
             with open(filename,'wb') as videof:
                 videof.write(filecontent)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
