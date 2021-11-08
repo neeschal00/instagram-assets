@@ -1,0 +1,8 @@
+creds.py
+
+#video files
+*.mp4
+#image files
+*.jpg
+*.jpeg
+*.png

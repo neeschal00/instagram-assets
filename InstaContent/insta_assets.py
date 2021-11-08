@@ -14,7 +14,7 @@ class InstaContent:
         return self
 
     def __exit__(self,*args):
-        self.close()
+        self.instaS.close()
 
     def __init__(self, uid:str, password:str) -> None:
 
@@ -52,7 +52,6 @@ class InstaContent:
         self.userId = login_resp.json()['userId'] #numerical user id stored in insta
         logging.info(f"{login_resp.status_code} status of logging into the instagram account")
 
-        self.instaS.close()
 
 
     def followers(self,unfollowers_only:bool=False)-> list:
