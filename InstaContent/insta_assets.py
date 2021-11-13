@@ -1,7 +1,5 @@
 import requests
-from bs4 import BeautifulSoup
 from datetime import datetime
-from pprint import pprint
 import asyncio, aiohttp
 from urllib.parse import quote, urlsplit
 import logging
@@ -222,3 +220,12 @@ class InstaContent:
         else:
             with open(filename,'wb') as videof:
                 videof.write(filecontent)
+
+if __name__ == "__main__":
+    username = input("Enter Your instagram Username :")
+    password = input("Enter Your Password :")
+    obj = InstaContent(username,password) # Enter username and password
+    unfollowers_data = obj.followers(unfollowers_only=True) #to get the list of unfollowers only
+    # pprint(unfollowers_data)
+    post_url = input("Enter the Post url that you want to download: ")
+    obj.downloadPost(post_url)
