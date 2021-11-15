@@ -6,3 +6,8 @@ creds.py
 *.jpg
 *.jpeg
 *.png
+
+#environments
+venv/
+__pycache__/
+.venv
