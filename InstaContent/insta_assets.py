@@ -40,13 +40,24 @@ class InstaContent:
         # with requests.session() as self.instaS:
         login_cont = self.instaS.get('https://www.instagram.com/accounts/login/',headers=self.headers)
         self.csrf = login_cont.cookies['csrftoken']
+        print("cookies:",login_cont.cookies)
+        print("headers:",login_cont.headers)
+
         self.login_headers = {
             "x-requested-with": "XMLHttpRequest",
+            "origin":"https://www.instagram.com",
             "referer": "https://www.instagram.com/accounts/login/",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "Windows",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-origin",
+            "x-ig-app-id": "936619743392459",
             "x-csrftoken": self.csrf
         }
         login_resp = self.instaS.post(self.login_url,data=payload,headers={**self.headers,**self.login_headers})
 
+        print(login_resp.json())
         self.userId = login_resp.json()['userId'] #numerical user id stored in insta
         logging.info(f"{login_resp.status_code} status of logging into the instagram account")
 
