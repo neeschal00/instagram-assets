@@ -2,9 +2,9 @@ name: Publish Python distributions to PyPI and TestPyPI
 
 on:
     push:
-    branches: [ master ]
+        branches: [ main ]
     pull_request:
-    branches: [ master ]
+        branches: [ main ]
 
 jobs:
     build-n-publish:
@@ -28,8 +28,3 @@ jobs:
             flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
         - name: Build binary wheel and a source tarball
         run: python setup.py sdist
-        - name: Publish distribution to Test PyPI
-        uses: pypa/gh-action-pypi-publish@master
-        with:
-            password: ${{ secrets.test_pypi_password }}
-            repository_url: https://test.pypi.org/legacy/
