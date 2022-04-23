@@ -8,6 +8,6 @@ frozenlist==1.2.0
 idna==3.3
 multidict==6.0.2
 requests==2.27.1
-typing-extensions==4.0.0
+typing-extensions==4.2.0
 urllib3==1.26.7
 yarl==1.7.2
